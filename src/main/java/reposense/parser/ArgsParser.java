@@ -79,6 +79,7 @@ public class ArgsParser {
     public static final String[] ORIGINALITY_THRESHOLD_FLAGS = new String[] {"--originality-threshold", "-ot"};
     public static final String[] PORTFOLIO_FLAG = new String[] {"--portfolio", "-P"};
     public static final String[] REFRESH_ONLY_TEXT_FLAG = new String[] {"--text", "-T"};
+    public static final String[] JSON_PRINT_MODE_FLAGS = new String[]{"--use-json-pretty-printing", "-j"};
 
     private static final Logger logger = LogsManager.getLogger(ArgsParser.class);
 
@@ -276,6 +277,11 @@ public class ArgsParser {
                 .action(Arguments.storeTrue())
                 .help("Enables fresh cloning.");
 
+        parser.addArgument(JSON_PRINT_MODE_FLAGS)
+                .dest(JSON_PRINT_MODE_FLAGS[0])
+                .action(Arguments.storeTrue())
+                .help("A flag to use json pretty printing when generating the json files.");
+
         return parser;
     }
 
@@ -316,6 +322,7 @@ public class ArgsParser {
         int numAnalysisThreads = results.get(ANALYSIS_THREADS_FLAG[0]);
         boolean shouldPerformFreshCloning = results.get(FRESH_CLONING_FLAG[0]);
         boolean shouldRefreshOnlyText = results.get(REFRESH_ONLY_TEXT_FLAG[0]);
+        boolean isJsonPrettyPrintingUsed = results.get(JSON_PRINT_MODE_FLAGS[0]);
 
         CliArguments.Builder cliArgumentsBuilder = new CliArguments.Builder()
                 .configFolderPath(configFolderPath)
@@ -335,7 +342,8 @@ public class ArgsParser {
                 .originalityThreshold(originalityThreshold)
                 .isPortfolio(isPortfolio)
                 .isFreshClonePerformed(shouldPerformFreshCloning)
-                .isOnlyTextRefreshed(shouldRefreshOnlyText);
+                .isOnlyTextRefreshed(shouldRefreshOnlyText)
+                .isPrettyPrintingUsed(isJsonPrettyPrintingUsed);
 
         LogsManager.setLogFolderLocation(outputFolderPath);
 
