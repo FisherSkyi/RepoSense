@@ -55,6 +55,8 @@ public class FileUtil {
     private static final String PARTIAL_REPO_SUFFIX = "_partial";
     private static final String SHALLOW_PARTIAL_REPO_SUFFIX = "_shallow_partial";
 
+    private static boolean isPrettyPrintingUsed = false;
+
     private static final String MESSAGE_INVALID_FILE_PATH = "\"%s\" is an invalid file path. Skipping this directory.";
     private static final String MESSAGE_FAIL_TO_ZIP_FILES =
             "Exception occurred while attempting to zip the report files.";
@@ -107,11 +109,17 @@ public class FileUtil {
      * was an error while writing the JSON file.
      */
     public static Optional<Path> writeJsonFile(Object object, String path) {
-        Gson gson = new GsonBuilder()
+        GsonBuilder gsonBuilder = new GsonBuilder()
                 .registerTypeHierarchyAdapter(LocalDateTime.class, new DateSerializer())
                 .registerTypeAdapter(FileType.class, new FileType.FileTypeSerializer())
-                .registerTypeHierarchyAdapter(ZoneId.class, new ZoneSerializer())
-                .create();
+                .registerTypeHierarchyAdapter(ZoneId.class, new ZoneSerializer());
+        Gson gson;
+
+        if (isPrettyPrintingUsed) {
+            gson = gsonBuilder.setPrettyPrinting().create();
+        } else {
+            gson = gsonBuilder.create();
+        }
 
         // Gson serializer from:
         // https://stackoverflow.com/questions/39192945/serialize-java-8-localdate-as-yyyy-mm-dd-with-gson
@@ -126,6 +134,10 @@ public class FileUtil {
             logger.log(Level.SEVERE, e.getMessage(), e);
             return Optional.empty();
         }
+    }
+
+    public static void setPrettyPrintingMode(boolean isPrettyPrintingAdopted) {
+        isPrettyPrintingUsed = isPrettyPrintingAdopted;
     }
 
     /**

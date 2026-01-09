@@ -451,6 +451,12 @@ public class CliArguments {
             return this;
         }
 
+        /**
+         * Adds the {@code isPrettyPrintingUsed} to CliArguments.
+         *
+         * @param isPrettyPrintingUsed Is pretty printing used.
+         * @return Builder
+         */
         public Builder isPrettyPrintingUsed(boolean isPrettyPrintingUsed) {
             this.cliArguments.isPrettyPrintingUsed = isPrettyPrintingUsed;
             return this;
