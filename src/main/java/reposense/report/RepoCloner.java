@@ -190,6 +190,7 @@ public class RepoCloner {
             crp = GitClone.cloneBareAsync(config, Paths.get("."), outputDirectory.toString());
         } catch (GitCloneException | IOException e) {
             logger.log(Level.WARNING, String.format(MESSAGE_ERROR_CLONING, config.getDisplayName()), e);
+            ErrorSummary.getInstance().addErrorMessage(config.getDisplayName(), e.getMessage());
             return false;
         }
         return true;
@@ -229,6 +230,7 @@ public class RepoCloner {
                     shallowSinceDate);
         } catch (GitCloneException | IOException e) {
             logger.log(Level.WARNING, String.format(MESSAGE_ERROR_CLONING_SHALLOW, config.getDisplayName()), e);
+            ErrorSummary.getInstance().addErrorMessage(config.getDisplayName(), e.getMessage());
             return false;
         }
         return true;
