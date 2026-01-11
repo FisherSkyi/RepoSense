@@ -189,8 +189,9 @@ public class RepoCloner {
 
             crp = GitClone.cloneBareAsync(config, Paths.get("."), outputDirectory.toString());
         } catch (GitCloneException | IOException e) {
-            logger.log(Level.WARNING, String.format(MESSAGE_ERROR_CLONING, config.getDisplayName()), e);
             ErrorSummary.getInstance().addErrorMessage(config.getDisplayName(), e.getMessage());
+            logger.log(Level.WARNING, String.format(MESSAGE_ERROR_CLONING, config.getDisplayName()), e);
+
             return false;
         }
         return true;
@@ -229,8 +230,9 @@ public class RepoCloner {
             crp = GitClone.cloneShallowBareAsync(config, Paths.get("."), outputDirectory.toString(),
                     shallowSinceDate);
         } catch (GitCloneException | IOException e) {
-            logger.log(Level.WARNING, String.format(MESSAGE_ERROR_CLONING_SHALLOW, config.getDisplayName()), e);
             ErrorSummary.getInstance().addErrorMessage(config.getDisplayName(), e.getMessage());
+            System.out.println("Added error message for " + e.getMessage());
+            logger.log(Level.WARNING, String.format(MESSAGE_ERROR_CLONING_SHALLOW, config.getDisplayName()), e);
             return false;
         }
         return true;
@@ -266,6 +268,7 @@ public class RepoCloner {
             logger.info(String.format(MESSAGE_START_CLONING_PARTIAL, config.getLocation()));
             GitClone.clonePartialBare(config, Paths.get("."), outputDirectory.toString());
         } catch (GitCloneException | IOException e) {
+            ErrorSummary.getInstance().addErrorMessage(config.getDisplayName(), e.getMessage());
             logger.log(Level.WARNING, String.format(MESSAGE_ERROR_CLONING_PARTIAL, config.getDisplayName()), e);
             return false;
         }
@@ -302,6 +305,7 @@ public class RepoCloner {
             GitClone.cloneShallowPartialBare(config, Paths.get("."), outputDirectory.toString(),
                     config.getSinceDate());
         } catch (GitCloneException | IOException e) {
+            ErrorSummary.getInstance().addErrorMessage(config.getDisplayName(), e.getMessage());
             logger.log(Level.WARNING, String.format(MESSAGE_ERROR_CLONING_SHALLOW_PARTIAL, config.getDisplayName()), e);
             return false;
         }
@@ -326,6 +330,7 @@ public class RepoCloner {
             logger.info(String.format(MESSAGE_COMPLETE_CLONING, config.getLocation()));
         } catch (RuntimeException | CommandRunnerProcessException e) {
             crp = null;
+            ErrorSummary.getInstance().addErrorMessage(config.getDisplayName(), e.getMessage());
             logger.log(Level.WARNING, String.format(MESSAGE_ERROR_CLONING, config.getDisplayName()), e);
             return false;
         }
