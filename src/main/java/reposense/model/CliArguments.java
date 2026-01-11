@@ -41,6 +41,7 @@ public class CliArguments {
     private boolean isPortfolio;
     private boolean isFreshClonePerformed = ArgsParser.DEFAULT_SHOULD_FRESH_CLONE;
     private boolean isOnlyTextRefreshed;
+    private boolean isPrettyPrintingUsed;
 
     private List<String> locations;
     private boolean isViewModeOnly;
@@ -168,6 +169,10 @@ public class CliArguments {
 
     public ChartBlurbMap getChartBlurbMap() {
         return chartBlurbMap;
+    }
+
+    public boolean isPrettyPrintingUsed() {
+        return isPrettyPrintingUsed;
     }
 
     /**
@@ -443,6 +448,17 @@ public class CliArguments {
          */
         public Builder isViewModeOnly(boolean isViewModeOnly) {
             this.cliArguments.isViewModeOnly = isViewModeOnly;
+            return this;
+        }
+
+        /**
+         * Adds the {@code isPrettyPrintingUsed} to CliArguments.
+         *
+         * @param isPrettyPrintingUsed Is pretty printing used.
+         * @return Builder
+         */
+        public Builder isPrettyPrintingUsed(boolean isPrettyPrintingUsed) {
+            this.cliArguments.isPrettyPrintingUsed = isPrettyPrintingUsed;
             return this;
         }
 
