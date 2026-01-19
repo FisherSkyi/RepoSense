@@ -335,18 +335,12 @@ export default defineComponent({
 
     resetFilteredFileName(): void {
       this.$emit("update:filteredFileName", "");
-      window.removeHash("authorshipFilesGlob");
-      this.$store.commit("updateAuthorshipRefreshState", false);
       this.$emit("get-filtered");
-      window.location.reload();
     },
 
     setFilteredFileName(evt: Event): void {
       this.$emit("update:filteredFileName", (evt.target as HTMLInputElement).value);
-      this.$store.commit("updateAuthorshipRefreshState", true);
-      window.addHash("authorshipFilesGlob", this.filteredFileName);
       this.$emit("get-filtered");
-      window.location.reload();
     },
 
     updateTmpFilterSinceDate(event: Event) {

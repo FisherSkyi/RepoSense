@@ -349,12 +349,8 @@ export default defineComponent({
 
       this.toReverseSortFiles = hash.reverseAuthorshipOrder !== 'false';
 
-      if (hash.filteredFileName) {
-        this.indicateSearchBar();
-        this.searchBarValue = hash.authorshipFilesGlob?? hash.filteredFileName;
-        if (!(hash.authorshipFilesGlob)) {
-          window.addHash("authorshipFilesGlob", hash.filteredFileName);
-        }
+      if (hash.authorshipFilesGlob) {
+        this.searchBarValue = hash.authorshipFilesGlob;
       }
 
       if (hash.authorshipFileTypes) {
@@ -387,9 +383,8 @@ export default defineComponent({
       addHash('tabRepo', this.info.repo);
       addHash('authorshipIsMergeGroup', this.info.isMergeGroup);
       this.updateFileTypeHash();
-      if (window.hashParams.filteredFileName) {
-        addHash('authorshipFilesGlob', window.hashParams.filteredFileName);
-        this.searchBarValue = window.hashParams.filteredFileName;
+      if (this.searchBarValue) {
+        addHash('authorshipFilesGlob', this.searchBarValue);
         this.indicateSearchBar();
       }
     },
