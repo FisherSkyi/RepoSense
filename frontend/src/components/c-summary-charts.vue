@@ -196,7 +196,9 @@
       )
         .summary-chart__title--index(v-if="!isChartWidgetMode && !isPortfolio") {{ j+1 }}
         .summary-chart__title--repo(v-if="filterGroupSelection === 'groupByNone'") {{ user.repoName }}
-        .summary-chart__title--author-repo(v-if="filterGroupSelection === 'groupByAuthors'") {{ user.repoName }}
+        .summary-chart__title--author-repo(v-if="filterGroupSelection === 'groupByAuthors'",
+            :class="{'active-text': user.name === activeUser && user.repoName === activeRepo}"
+            ) {{ user.repoName }}
         .summary-chart__title--name(
           v-if="!isPortfolio && filterGroupSelection !== 'groupByAuthors'",
           :class="{ warn: user.name === '-' }"

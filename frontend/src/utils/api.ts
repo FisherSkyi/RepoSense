@@ -201,6 +201,7 @@ window.api = {
       throw new Error(`Unable to read ${fname}.`);
     }
   },
+  // this function loads summary.json and populates global variables
   async loadSummary() {
     window.REPOS = {};
     let data;
