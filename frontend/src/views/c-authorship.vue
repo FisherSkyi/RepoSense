@@ -96,9 +96,13 @@
   .files(v-if="isLoaded")
     .empty(v-if="info.files.length === 0") nothing to see here :(
     template(v-for="(file, index) in selectedFiles", :key="file.path")
-      c-authorship-file(:file="file", :index="index",
-        :files-sort-type="this.filesSortType", :info="this.info",
-        :author-colors="this.authorColors", :file-type-colors="this.fileTypeColors",
+      c-authorship-file(
+        :file="file",
+        :index="index",
+        :files-sort-type="this.filesSortType",
+        :info="this.info",
+        :author-colors="this.authorColors",
+        :file-type-colors="this.fileTypeColors",
         @toggle-file-active-property="toggleFileActiveProperty")
 </template>
 

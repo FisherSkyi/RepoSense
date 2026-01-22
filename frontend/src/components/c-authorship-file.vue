@@ -20,13 +20,24 @@
         font-awesome-icon(icon="caret-right", fixed-width)
         span.tooltip-text(:ref="`${file.path}-show-file-tooltip`") Click to show file details
     span.index {{ index + 1 }}. &nbsp;
-    span.path
-      span(
-        :class="{'selected-parameter':\
-          filesSortType === 'path' || filesSortType === 'fileName'}"
-      ) {{ getFirstPartOfPath(file) }}&nbsp;
-      span.in(v-if="filesSortType === 'fileName'") in&nbsp;
-      span(v-if="filesSortType === 'fileName'") {{ getSecondPartOfPath(file) }}&nbsp;
+    .tooltip
+      span.path
+        span(
+          :class="{'selected-parameter':\
+            filesSortType === 'path' || filesSortType === 'fileName'}"
+        ) {{ getFirstPartOfPath(file) }}&nbsp;
+        span.in(v-if="filesSortType === 'fileName'") in&nbsp;
+        span(v-if="filesSortType === 'fileName'") {{ getSecondPartOfPath(file) }}&nbsp;
+      span.tooltip-text(v-show="file.active") This is the file path. Click to hide file details
+      span.tooltip-text(v-show="!file.active") This is the file path. Click to show file details
+
+    //span.path
+    //  span(
+    //    :class="{'selected-parameter':\
+    //      filesSortType === 'path' || filesSortType === 'fileName'}"
+    //  ) {{ getFirstPartOfPath(file) }}&nbsp;
+    //  span.in(v-if="filesSortType === 'fileName'") in&nbsp;
+    //  span(v-if="filesSortType === 'fileName'") {{ getSecondPartOfPath(file) }}&nbsp;
     span.fileTypeLabel(
       v-if="!file.isBinary && !file.isIgnored",
       :style="{\
