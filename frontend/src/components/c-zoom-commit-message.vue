@@ -8,11 +8,13 @@
   span.code-merge-icon(v-if="slice.isMergeCommit")
     font-awesome-icon(icon="code-merge")
     span &nbsp;
-  a.message-title(:href="getSliceLink(slice)",
-    :class="!isBrokenLink(getSliceLink(slice)) ? '' : 'broken-link'", target="_blank")
-    .within-border {{ slice.messageTitle.substr(0, 50) }}
-    .not-within-border(v-if="slice.messageTitle.length > 50")
-      |{{ slice.messageTitle.substr(50) }}
+  .tooltip
+    a.message-title(:href="getSliceLink(slice)",
+      :class="!isBrokenLink(getSliceLink(slice)) ? '' : 'broken-link'", target="_blank")
+      .within-border {{ slice.messageTitle.substr(0, 50) }}
+      .not-within-border(v-if="slice.messageTitle.length > 50")
+        |{{ slice.messageTitle.substr(50) }}
+    span.tooltip-text Click to view the detailed file changes in the commit
   span(data-cy="changes") &nbsp; (+{{ slice.insertions }} -{{ slice.deletions }} lines) &nbsp;
   .hash
     span {{ slice.hash.substr(0, 7) }}
