@@ -6,6 +6,20 @@
 
 RepoSense is a contribution analysis tool for Git repositories. It is particularly useful for those who want a chronological visualisation of the code contributions and commits made to a group of repositories. Educators can use RepoSense to track the work done in class projects, while team leads may use it to oversee their project teams.
 
+## Run with Docker
+
+Build the Docker image:
+
+```bash
+docker build -t reposense .
+```
+
+Run RepoSense in a container (example command):
+
+```bash
+docker run --rm -v "$(pwd):/workspace" reposense --repos https://github.com/reposense/RepoSense.git --output /workspace/reposense-report --view
+```
+
 - **User documentation** i.e., if you are interested in using RepoSense
   - [**Product website**](https://reposense.org)
   - [**User guide**](https://reposense.org/ug/index.html)
