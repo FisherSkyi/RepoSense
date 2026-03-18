@@ -17,7 +17,7 @@ docker build -t reposense .
 Run RepoSense in a container (example command):
 
 ```bash
-docker run --rm -v "$(pwd):/workspace" reposense --repos https://github.com/reposense/RepoSense.git --output /workspace/reposense-report --view
+docker run --rm -v "$(pwd):/workspace" reposense --repos https://github.com/reposense/RepoSense.git --output /workspace/reposense-report
 ```
 
 - **User documentation** i.e., if you are interested in using RepoSense
