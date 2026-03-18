@@ -14,11 +14,13 @@ Build the Docker image:
 docker build -t reposense .
 ```
 
-Run RepoSense in a container (example command):
+Run RepoSense in self-host mode by providing a public GitHub repository URL:
 
 ```bash
-docker run --rm -v "$(pwd):/workspace" reposense --repos https://github.com/reposense/RepoSense.git --output /workspace/reposense-report
+docker run --rm -p 9000:9000 reposense --repos PUBLIC_GITHUB_REPO_URL --view
 ```
+
+Then open `http://localhost:9000` in your browser.
 
 - **User documentation** i.e., if you are interested in using RepoSense
   - [**Product website**](https://reposense.org)
