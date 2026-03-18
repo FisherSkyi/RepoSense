@@ -17,7 +17,7 @@ docker build -t reposense .
 Run RepoSense in self-host mode by providing a public GitHub repository URL:
 
 ```bash
-docker run --rm -p 9000:9000 reposense --repos PUBLIC_GITHUB_REPO_URL --view
+docker run --rm -p 9000:9000 reposense --repos <PUBLIC_GITHUB_REPO_URL> --view
 ```
 
 Then open `http://localhost:9000` in your browser.
