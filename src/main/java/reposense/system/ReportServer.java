@@ -51,7 +51,7 @@ public class ReportServer {
                 Desktop.getDesktop().browse(new URI(url));
                 logger.info("Loading " + url + " on the default browser...");
             } else {
-                logger.severe("Browser could not be launched. Please refer to the user guide to"
+                logger.info("Browser could not be launched. Please refer to the user guide to"
                         + " manually view the report");
             }
         } catch (URISyntaxException ue) {
