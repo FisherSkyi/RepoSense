@@ -30,3 +30,5 @@ reposense-report/
 reposense-logs/
 docs/_site/
 bin/
+
+__pycache__/
