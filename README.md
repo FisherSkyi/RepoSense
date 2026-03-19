@@ -22,6 +22,12 @@ docker run --rm -p 9000:9000 reposense --repos <PUBLIC_GITHUB_REPO_URL> --view
 
 Then open `http://localhost:9000` in your browser.
 
+Use Docker Compose (e.g., Portainer Git repository stacks):
+
+```bash
+REPOS_URL=<PUBLIC_GITHUB_REPO_URL> docker compose up --build
+```
+
 - **User documentation** i.e., if you are interested in using RepoSense
   - [**Product website**](https://reposense.org)
   - [**User guide**](https://reposense.org/ug/index.html)
