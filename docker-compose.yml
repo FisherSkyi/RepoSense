@@ -3,8 +3,7 @@ services:
     build:
       context: .
     image: reposense:latest
-    environment:
-      REPOS_URL: ${REPOS_URL:-https://github.com/reposense/RepoSense}
     ports:
       - "9000:9000"
-    command: ["--repos", "${REPOS_URL:-https://github.com/reposense/RepoSense}", "--view"]
+    # No command needed — the frontend server handles URL input via the web UI
+    # Visit http://your-server:9000 to enter a repo URL and generate a report
