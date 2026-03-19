@@ -2,7 +2,9 @@ services:
   reposense:
     build:
       context: .
-    image: reposense
+    image: reposense:latest
+    environment:
+      REPOS_URL: ${REPOS_URL:-https://github.com/reposense/RepoSense}
     ports:
       - "9000:9000"
     command: ["--repos", "${REPOS_URL:-https://github.com/reposense/RepoSense}", "--view"]
