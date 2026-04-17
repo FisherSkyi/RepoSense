@@ -31,3 +31,5 @@ reposense-logs/
 generated-configs/
 docs/_site/
 bin/
+
+__pycache__/

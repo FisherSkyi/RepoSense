@@ -1,0 +1,9 @@
+services:
+  reposense:
+    build:
+      context: .
+    image: reposense:latest
+    ports:
+      - "9000:9000"
+    # No command needed — the frontend server handles URL input via the web UI
+    # Visit http://your-server:9000 to enter a repo URL and generate a report
